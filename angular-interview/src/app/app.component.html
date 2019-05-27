@@ -1,0 +1,22 @@
+<h1>{{title}}</h1>
+<table class="book-list">
+  <tr *ngFor="let book of books">
+    <table>
+      <tr (click)="onDisplayDetails(book.id)">
+        <td>{{book.id}}</td>
+        <td><b>{{book.title | titlecase}}</b></td>
+        <td><i>{{book.author | titlecase}}</i></td>
+        <td>
+      </tr>
+    </table>
+    <div [class.displayDetails]="book.id===selectedBookId" class="book-details">
+      <table *ngIf="book.borrowers">
+        <tr *ngFor="let borrower of book.borrowers">
+          <td>{{borrower.name}}</td>
+          <td>{{borrower.borrowedDate}}</td>
+          <td>{{borrower.returnedDate}}</td>
+        </tr>
+      </table>
+    </div>
+  </tr>
+</table>
